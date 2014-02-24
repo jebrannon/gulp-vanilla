@@ -1,0 +1,8 @@
+{
+  "name": "gulp-vanilla",
+  "version": "0.0.1",
+  "author": "James <me@jamesbrannon.co.uk>",
+  "devDependencies": {
+    "gulp-minify-css": "~0.3.0"
+  }
+}

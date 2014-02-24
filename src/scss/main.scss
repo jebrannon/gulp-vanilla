@@ -1,0 +1,24 @@
+/**
+* @class css.main
+*
+* This is the core/primary stylesheet for the whole site, all other stylesheets are pulled in by this one.
+* It is mobile first so we declare all our base styles first add more through media queries
+*
+* ## Usage
+* Add to your base html file in a conditional statement to not load it if you are using IE8 or less
+*
+*     <!--[if !lte IE 8]>
+*         <link rel='stylesheet' href='/path/to/file/syle.css') }}' />
+*     <![endif]-->
+*/
+
+// Import Mixin
+@import "__mixins/retina";
+// @import "__mixins/mixins";
+
+// Import Base Styles (Media Queries are not located within these files)
+// @import "__base/normalize";
+// @import "__base/helpers";
+// @import "__base/colours";
+// @import "__base/fonts";
+// @import "__base/base";

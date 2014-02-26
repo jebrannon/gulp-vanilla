@@ -3,6 +3,7 @@
 *
 * This is the core/primary stylesheet for the whole site, all other stylesheets are pulled in by this one.
 * It is mobile first so we declare all our base styles first add more through media queries
+* Credit goes to David Plunkett for a great SCSS Foundation (http://www.quirksmode.co.uk/).
 *
 * ## Usage
 * Add to your base html file in a conditional statement to not load it if you are using IE8 or less

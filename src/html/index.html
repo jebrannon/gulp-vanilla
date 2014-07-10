@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" ng-app="myApp">
     <head>
         <title>Vanilla</title>
 
@@ -45,7 +45,7 @@
         <!-- Main Stylesheet -->
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
     </head>
-    <body class="theme">
+    <body class="theme" ng-controller='WelcomeCtrl'>
         <noscript>
             <div class="no-script">
                 <p>For full functionality of this site it is necessary to enable JavaScript.</p>
@@ -53,9 +53,8 @@
             </div>
         </noscript>
 
-        <h1>Vanilla</h1>
-
-        <script data-main="js/common" src="js/lib/require.js"></script>
-
+        <h1>Vanilla</h1> 
+        <p>{{testVar}}</p>
+        <script src="/js/app-min.js"></script>
     </body>
 </html>

@@ -1,72 +1,44 @@
-var browserify = require('gulp-browserify');
-var browserSync = require('browser-sync');
-var clean = require('gulp-clean');
-var concat = require('gulp-concat');
 var gulp = require('gulp');
-var gutil = require('gulp-util');
-var jshint = require('gulp-jshint');
-var minifycss = require('gulp-minify-css');
-var minifyhtml = require('gulp-minify-html');
-var rename = require('gulp-rename');
-var sass = require('gulp-sass');
 
-// Views task
-gulp.task('html', function() {
-  // Get our index.html
-  gulp.src('src/html/index.html')
-    .pipe(minifyhtml({comments: false}))
-    .pipe(gulp.dest('bin/'));
 
-  // Any other view files from src/html
-  gulp.src('src/html/views/**/*')
-    .pipe(minifyhtml({comments: false}))
-    .pipe(gulp.dest('bin/html/'));
+/*
+		Import task modules
+*/
+var config = require('./gulp/config');
+// var Fonts = require('./gulp/tasks/FontsTask');
+var Images = require('./gulp/tasks/ImagesTask');
+var Markup = require('./gulp/tasks/MarkupTask');
+var Less = require('./gulp/tasks/LessTask');
+// var Custom = require('./gulp/tasks/CustomStylesTask');
+// var Configs = require('./gulp/tasks/ConfigTask');
+var Libs = require('./gulp/tasks/LibsTask');
+var Lint = require('./gulp/tasks/LintTask');
+var Angular = require('./gulp/tasks/AngularTask');
+var Server = require('./gulp/tasks/ServerTask');
+
+
+/*
+		Define individual tasks
+*/
+gulp.task('images', Images);
+gulp.task('markup', Markup);
+gulp.task('less', Less);
+gulp.task('libs', Libs);
+gulp.task('lint', Lint);
+gulp.task('angular', Angular);
+gulp.task('run-dev-server', Server.develop);
+gulp.task('run-release-server', Server.release);
+gulp.task('reload', Server.reload);
+
+
+/*
+		Group tasks
+*/
+gulp.task('compile', ['markup', 'less', 'libs', 'lint', 'angular']);
+gulp.task('default', ['images', 'compile', 'run-dev-server'], function () {
+  gulp.watch(config.markup.watch, ['markup', 'reload']);
+  gulp.watch(config.less.watch, ['less', 'reload']);
+  gulp.watch(config.libs.watch, ['libs', 'reload']);
+  gulp.watch(config.angular.watch, ['angular', 'reload']);
 });
-
-//  JSHint task
-gulp.task('lint', function() {
-  gulp.src('src/js/*.js')
-  .pipe(jshint())
-  // You can look into pretty reporters as well, but that's another story
-  .pipe(jshint.reporter('default'));
-});
-
-//  Browserify task
-gulp.task('scripts', function() {
-  //  Single point of entry (make sure not to src ALL your files, browserify will figure it out for you)
-  gulp.src(['src/js/app.js'])
-  .pipe(browserify({
-    insertGlobals: true,
-    debug: true
-  }))
-  //  Bundle to a single file
-  .pipe(concat('app-min.js'))
-  //  Output it to our production folder
-  .pipe(gulp.dest('bin/js'));
-});
-
-// Compile SCSS, compress CSS and output 'style.css'
-gulp.task('styles', function () {
-  gulp.src('src/scss/*.scss')
-    .pipe(sass())
-    .pipe(minifycss())
-    .pipe(rename("styles.css"))
-    .pipe(gulp.dest('bin/css'));
-});
-
-//  Setup server
-gulp.task('server', function () {
-  return browserSync.init(['*.html', 'css/*.css'], {
-    server: {
-      baseDir: './bin/'
-    }
-  });
-});
-
-//  Watch task
-gulp.task('watch', function () {
-  gulp.watch('src/**/*', ['compile']);
-});
-
-gulp.task('compile', ['html', 'lint', 'scripts', 'styles']);
-gulp.task('default', ['compile', 'watch', 'server']);
+gulp.task('check-release', ['run-release-server']);

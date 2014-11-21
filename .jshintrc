@@ -14,8 +14,15 @@
   "quotmark": "single",
   "regexp": true,
   "undef": true,
-  "unused": true,
+  "unused": false,
   "strict": true,
   "trailing": true,
-  "smarttabs": true
+  "smarttabs": true,
+  "globals": {
+    "$": false,
+    "jQuery": false,
+    "Offline": false,
+    "angular": false,
+    "YT": false
+  }
 }

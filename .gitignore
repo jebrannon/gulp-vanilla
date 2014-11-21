@@ -3,6 +3,8 @@
 bin/
 
 # ignore all node modules
+develop/
+release/
 node_modules/
 
 # ignore all files ending with ~

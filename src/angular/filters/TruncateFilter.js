@@ -12,7 +12,7 @@ var Truncate = function ($sce) {
       }
 
       //  Strip HTML
-      text = text.replace(/(<([^>]+)>)/ig, "");
+      text = text.replace(/(<([^>]+)>)/ig, '');
 
       if (text.length <= length || text.length - end.length <= length) {
         text = text;

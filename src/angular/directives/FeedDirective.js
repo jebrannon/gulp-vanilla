@@ -23,7 +23,7 @@ var FeedDirective = function ($window, $sce) {
 				}
 			};
 			var _handleDataResponse = function() {
-				console.log('_handleDataResponse')
+				console.log('_handleDataResponse');
 			};
 
 

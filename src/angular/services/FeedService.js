@@ -40,6 +40,7 @@ var FeedService = function ($http, $q, Utils) {
 		switch(data.type) {
 			case 'blogger':
 				return _parseBloggerFeed(data.resp);
+			case 'twitter':
 				break;
 		}
 	};
@@ -67,12 +68,12 @@ var FeedService = function ($http, $q, Utils) {
 	};
 	var _formatItemObject = function (data) {
 		var _o = {};
-		if (data.title && data.title.length) _o.title = data.title;
-		if (data.body && data.body.length) _o.body = data.body;
-		if (data.images && data.images.length) _o.images = data.images;
-		if (data.published && data.published.length) _o.published = data.published;
-		if (data.link && data.link.length) _o.link = data.link;
+		if (data.title && data.title.length) { _o.title = data.title; }
+		if (data.body && data.body.length) { _o.body = data.body; }
+		if (data.images && data.images.length) { _o.images = data.images; }
+		if (data.published && data.published.length) { _o.published = data.published; }
+		if (data.link && data.link.length) { _o.link = data.link; }
 		return _o;
-	}
+	};
 };
 module.exports = FeedService;

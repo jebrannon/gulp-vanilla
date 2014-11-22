@@ -24,9 +24,11 @@ var PageController = function ($rootElement, $scope, $window, $location, FeedSer
       console.log('CATCH: ', response);
     });
   };
-  $scope.$watch('blogger', function (items) {
-    
-    // console.log('blogger', items);
+
+  $scope.$on('$locationChangeSuccess', function (event, next, current) {
+    var arr = $location.path().split('/');
+    arr.shift();
+    console.log(arr);
   });
 
 

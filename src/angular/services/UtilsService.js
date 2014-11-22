@@ -18,16 +18,16 @@ var UtilsService = function() {
 		return value.replace(rformat, formatter);
 	};
 	that.stripHTML = function(str) {
-		var newStr = str.replace(/(<([^>]+)>)/ig, "");
-		newStr = newStr.replace(/\n/g, "§");
-		newStr = newStr.replace(/\r/g, "§");
+		var newStr = str.replace(/(<([^>]+)>)/ig, '');
+		newStr = newStr.replace(/\n/g, '§');
+		newStr = newStr.replace(/\r/g, '§');
 		var matches = newStr.match(/§/g);
 
 		//  Fix erroneous new line characters
 		if (matches && (matches.length === newStr.length)) {
 			return false;
 		} else {
-			newStr = newStr.replace(/§/g, " ");
+			newStr = newStr.replace(/§/g, ' ');
 		}
 
 		//  Return string if it has length

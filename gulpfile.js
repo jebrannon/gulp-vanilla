@@ -39,6 +39,6 @@ gulp.task('default', ['images', 'compile', 'run-dev-server'], function () {
   gulp.watch(config.markup.watch, ['markup', 'reload']);
   gulp.watch(config.less.watch, ['less', 'reload']);
   gulp.watch(config.libs.watch, ['libs', 'reload']);
-  gulp.watch(config.angular.watch, ['angular', 'reload']);
+  gulp.watch(config.angular.watch, ['angular', 'lint', 'reload']);
 });
 gulp.task('check-release', ['run-release-server']);
